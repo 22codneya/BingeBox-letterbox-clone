@@ -1,32 +1,26 @@
-import React from 'react'
+import React from "react";
 
-const home = () => {
+const Home = () => {
   return (
-    <div>
-     <Navbar />
+     <div className="bg-base-200 min-h-screen">
+      {/* Hero */}
+      <div className="hero min-h-[60vh] bg-base-100">
+        <div className="hero-content text-center">
+          <div className="max-w-2xl">
+            <h1 className="text-5xl font-bold">
+              Welcome to BingeBox 🎬
+            </h1>
 
-  <HeroSection />
+            <p className="py-6 text-lg">
+              Discover trending movies, explore classics, and build your own
+              watchlist.
+            </p>
 
-  <MovieSection
-    title="🔥 Trending Movies"
-    movies={trendingMovies}
-  />
+          </div>
+        </div>
+      </div>
+      </div>
+  );
+};
 
-  <MovieSection
-    title="⭐ Top Rated"
-    movies={topRatedMovies}
-  />
-
-  <MovieSection
-    title="🆕 New Releases"
-    movies={newReleases}
-  />
-
-  <RecentReviews />
-
-  <Footer />
-    </div>
-  )
-}
-
-export default home
+export default Home;
