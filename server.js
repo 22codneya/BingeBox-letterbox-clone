@@ -10,7 +10,6 @@ import userRoutes from './routes/userRoutes.js'
 const app = express()
 
 app.use(cors())
-
 app.use(express.json())
 
 const connectDB = async()=>{
@@ -26,7 +25,7 @@ const connectDB = async()=>{
 connectDB();
 
 
-app.use('/api/auth', userRoutes)
+app.use('/api/user', userRoutes)
 
 const PORT = process.env.PORT
 

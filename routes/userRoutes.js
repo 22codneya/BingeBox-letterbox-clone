@@ -1,4 +1,3 @@
-import React from 'react';
 import express from 'express'
 import { login, signup } from '../controller/userController.js';
 

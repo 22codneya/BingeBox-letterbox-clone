@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import profileImage from "../assets/profile_img.webp"
 const userSchema = new mongoose.Schema({
 
 name:{
@@ -22,7 +22,7 @@ name:{
     },
     profileImage:{
         type:String,
-        default:"/profile_img.webp"
+        default:{profileImage}
     },
     bio:{
         type: String,
