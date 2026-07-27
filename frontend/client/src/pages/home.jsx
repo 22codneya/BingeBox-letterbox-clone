@@ -1,8 +1,8 @@
-import React from "react";
 
+import MovieGrid from "../components/movieGrid";
 const Home = () => {
   return (
-     <div className="bg-base-200 min-h-screen">
+     <div className="py-24">
       {/* Hero */}
       <div className="hero min-h-[60vh] bg-base-100">
         <div className="hero-content text-center">
@@ -15,6 +15,7 @@ const Home = () => {
               Discover trending movies, explore classics, and build your own
               watchlist.
             </p>
+
 
           </div>
         </div>
