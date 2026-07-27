@@ -12,7 +12,6 @@ const useAuthStore = create (
     token: null,
 
     login: (userData, token)=>set(()=>({
-        
         user: userData,
         token: token
     })),

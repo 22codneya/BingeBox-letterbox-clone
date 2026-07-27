@@ -1,13 +1,12 @@
 import { loginUser, signupUser } from "../services/userServices.js"
 
-
 export const signup = async(req, res) =>{
     try {
         const user = await signupUser(req.body)
     
         res.status(201).json({
             success: true,
-            message: 'user registered succesfully',
+            message: 'user registered successfully',
             ...user
         })
     } catch (err) {
@@ -25,13 +24,13 @@ export const login = async(req, res) =>{
         
         res.status(200).json({
             success: true,
-            message: 'user loggedin succesfully',
+            message: 'user logged in successfully',
             ...userData
         })
     } catch (err) {
         res.status(404).json({
             success: false,
-            message: 'invalid email or password',
+            message: err.message,
         })
     }
 

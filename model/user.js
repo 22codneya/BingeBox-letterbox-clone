@@ -1,30 +1,30 @@
 import mongoose from "mongoose";
-import profileImage from "../assets/profile_img.webp"
+// import profileImage from "../assets/profile_img.webp"
 const userSchema = new mongoose.Schema({
 
 name:{
-    type:string,
+    type:String,
     required:true
 },
-    email:{
+email:{
         type:String,
         required: true
     },
 
-    password:{
+password:{
         type:String,
         required:true
     },
-    gender:{
+gender:{
         type:String,
         enum:['female','male','prefer not say',null],
         default:null
     },
-    profileImage:{
+profileImage:{
         type:String,
-        default:{profileImage}
+        default:"../assets/profile_img.webp"
     },
-    bio:{
+bio:{
         type: String,
         default:""
     }
