@@ -1,17 +1,17 @@
-function MovieCard() {
+function MovieCard({ movie}) {
   return (
     <div className="card bg-base-100 shadow-xl">
       <figure>
         <img
-          src="https://placehold.co/300x450"
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt="Movie Poster"
         />
       </figure>
 
       <div className="card-body">
-        <h2 className="card-title">Movie Title</h2>
+        <h2 className="card-title">{movie.title}</h2>
 
-        <p>⭐ 8.5</p>
+        <p>Description: {movie.overview}</p>
 
         <div className="card-actions justify-end">
           <button className="btn btn-primary btn-sm">

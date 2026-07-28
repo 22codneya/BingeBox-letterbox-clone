@@ -10,7 +10,7 @@ const navigate = useNavigate();
  const[toast, setToast] = useState(null)
 
 const [formData, setFormData]= useState({
-    name:'',
+    userName:'',
     email:'',
     password:''
 })
@@ -36,10 +36,12 @@ const handleSubmit=async(e)=>{
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(formData)
         })
-                const data = await response.json()
+            const data = await response.json();
 
+        console.log("signup response is here", response);
+        console.log("signup data is here", data);
            if(!response.ok){
-               throw new Error(data.message || "Signup failed")
+               throw new Error( "Signup failed here at response")
             }
 
             setToast({message: "Signup successfully", type: 'success'})
@@ -66,7 +68,7 @@ const handleChange=(e)=>{
             <form onSubmit={handleSubmit}>
             <fieldset className="fieldset">
                 <label className="label" htmlFor="name">Name</label>
-                <input type="text" id="name" className="input" placeholder="Enter your name here" name="name" value={formData.name} onChange={handleChange}/>
+                <input type="text" id="name" className="input" placeholder="Enter your name here" name="userName" value={formData.userName} onChange={handleChange}/>
             </fieldset>
 
             <fieldset className="fieldset">

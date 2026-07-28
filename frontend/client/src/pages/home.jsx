@@ -1,5 +1,5 @@
 
-import MovieGrid from "../components/movieGrid";
+import MovieCarousel from "../components/MovieCarousel";
 const Home = () => {
   return (
      <div className="py-24">
@@ -8,7 +8,7 @@ const Home = () => {
         <div className="hero-content text-center">
           <div className="max-w-2xl">
             <h1 className="text-5xl font-bold">
-              Welcome to BingeBox 🎬
+              Welcome to BingeBox 
             </h1>
 
             <p className="py-6 text-lg">
@@ -16,7 +16,8 @@ const Home = () => {
               watchlist.
             </p>
 
-
+            {/* hero finish */}
+          <MovieCarousel/>
           </div>
         </div>
       </div>

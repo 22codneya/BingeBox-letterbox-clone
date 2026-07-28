@@ -3,6 +3,7 @@ import { createUser, findUserByEmail, findUserById,findUserByIdAndUpdate } from 
 import jwt from 'jsonwebtoken'
 
 
+
 export const signupUser = async({userName, email, password})=>{
 
   const existingUser = await findUserByEmail(email)

@@ -14,7 +14,7 @@ console.log("profile service:", user);
 
 export const updateUserProfile = async(userId, updates)=>{
     const allowedUpdates={}
-    if(updates.userName) allowedUpdates.name = updates.userName
+    if(updates.userName) allowedUpdates.userName = updates.userName
     if(updates.profileImage) allowedUpdates.profileImage= updates.profileImage
     if(updates.bio) allowedUpdates.bio= updates.bio
     if(updates.gender) allowedUpdates.gender= updates.gender
