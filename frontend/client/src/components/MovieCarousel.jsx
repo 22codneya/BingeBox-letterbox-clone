@@ -1,10 +1,8 @@
 import MovieCard from "./MovieCard";
 import useFetch from "../../hook/useFetchhook.jsx";
 
-const MovieCarousel = () => {
-  const { movies, loading, error } = useFetch(
-    "https://api.themoviedb.org/3/trending/all/day?language=en-US"
-  );
+const MovieCarousel = ({title, url}) => {
+  const { movies, loading, error } = useFetch(url);
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -16,7 +14,7 @@ const MovieCarousel = () => {
   return (
      <section className="px-6 py-4">
       <h2 className="text-2xl font-bold text-white mb-4">
-         Trending Today
+         {title}
       </h2>
 
       <div className="carousel carousel-center rounded-box space-x-4 w-full">

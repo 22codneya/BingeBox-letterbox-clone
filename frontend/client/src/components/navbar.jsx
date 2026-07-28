@@ -1,7 +1,17 @@
 import 'react'
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+
+  const navigate = useNavigate()
+  const[query, setQuery]= useState('')
+
+  const handleSearch=(e)=>{
+     e.preventDefault();
+    //  if(!query.trim()) return;
+    navigate('/search');
+  }
   return (
   <div className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md">
   <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
@@ -48,7 +58,14 @@ const Navbar = () => {
       </ul>
     </div>
     <div className="navbar-end">
-      <input type="text" placeholder="Search movies..." className="input w-64 lg:w-auto" />
+      <form onSubmit={handleSearch} className='flex items-center gap-3 '>
+      <input type="text" placeholder="Search movies..." className="input w-64 lg:w-auto" value={query}
+        onChange={(e)=>setQuery(e.target.value)}/>
+
+      <button className="btn btn-primary" >
+        Search
+      </button>
+      </form>
     </div>
   </div>
 
