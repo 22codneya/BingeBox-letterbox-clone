@@ -10,7 +10,7 @@ const Navbar = () => {
   const handleSearch=(e)=>{
      e.preventDefault();
     //  if(!query.trim()) return;
-    navigate('/search');
+    navigate(`/search?search=${encodeURIComponent(query)}`);
   }
   return (
   <div className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md">
