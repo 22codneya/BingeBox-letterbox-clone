@@ -1,6 +1,3 @@
-// import { useEffect } from "react";
-// import MovieCard from "./MovieCard";
-// import useFetchStore from "../../../hook/useFetchStore.js";
 import MovieCard from "./MovieCard";
 import useFetch from "../../hook/useFetchhook.jsx";
 
@@ -16,22 +13,20 @@ const MovieCarousel = () => {
   if (error) {
     return <h2>{error}</h2>;
   }
-  // const {fetchMovie, movies}= useFetchStore();
-  // useEffect(()=>{
-  //   fetchMovie('https://api.themoviedb.org/3/trending/all/day?language=en-US')
-  // },[])
-  // console.log("movies here" , movies);
   return (
+     <section className="px-6 py-4">
+      <h2 className="text-2xl font-bold text-white mb-4">
+         Trending Today
+      </h2>
 
-    <section>
-      {/* <h2>{}</h2> */}
-
-      <div className="carousel space-x-4">
+      <div className="carousel carousel-center rounded-box space-x-4 w-full">
         {movies.map((movie) => (
-          <MovieCard movie={movie} />
+          <div key={movie.id} className="carousel-item">
+            <MovieCard movie={movie} />
+          </div>
         ))}
       </div>
     </section>
-  );
+  )
 };
 export default MovieCarousel 

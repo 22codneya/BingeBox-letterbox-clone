@@ -1,26 +1,14 @@
-function MovieCard({ movie}) {
+const MovieCard = ({ movie }) => {
   return (
-    <div className="card bg-base-100 shadow-xl">
-      <figure>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt="Movie Poster"
-        />
-      </figure>
-
-      <div className="card-body">
-        <h2 className="card-title">{movie.title}</h2>
-
-        <p>Description: {movie.overview}</p>
-
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary btn-sm">
-            Details
-          </button>
-        </div>
-      </div>
+    <div className="w-40 cursor-pointer transition-transform duration-300 hover:scale-105">
+      <img
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+        alt={movie.title || movie.name}
+        className="w-50 h-60 rounded-xl object-cover"
+      />
     </div>
   );
-}
+};
 
 export default MovieCard;
+
