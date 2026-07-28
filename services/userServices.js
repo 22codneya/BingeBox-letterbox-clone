@@ -3,7 +3,7 @@ import { createUser, findUserByEmail, findUserById,findUserByIdAndUpdate } from 
 import jwt from 'jsonwebtoken'
 
 
-export const signupUser = async({name, email, password})=>{
+export const signupUser = async({userName, email, password})=>{
 
   const existingUser = await findUserByEmail(email)
 
@@ -13,9 +13,9 @@ export const signupUser = async({name, email, password})=>{
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    const newUser = await createUser({name, email, password: hashedPassword})
+    const newUser = await createUser({userName, email, password: hashedPassword})
 
-    return {userId: newUser._id, name:newUser.name, email: newUser.email}
+    return {userId: newUser._id, userName:newUser.userName, email: newUser.email}
 
 }
 
@@ -42,8 +42,9 @@ export const loginUser = async({email, password}) =>{
     return {token, user:{
         userId: user._id,
         userEmail: user.email,
-        userName: user.name,
+        userName: user.userName,
         profileImage: user.profileImage,
         bio:user.bio,
+        location:user.location
     } }
 }

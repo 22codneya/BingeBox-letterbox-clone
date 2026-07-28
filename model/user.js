@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 // import profileImage from "../assets/profile_img.webp"
 const userSchema = new mongoose.Schema({
 
-name:{
+userName:{
     type:String,
     required:true
 },
@@ -27,7 +27,11 @@ profileImage:{
 bio:{
         type: String,
         default:""
-    }
+    },
+Location:{
+    type:String,
+    default:""
+}
 
 },{timestamps:true})
 

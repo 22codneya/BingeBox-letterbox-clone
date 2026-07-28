@@ -17,12 +17,3 @@ export const findUserByIdAndUpdate = async(userId, updates)=>{
     return await User.findByIdAndUpdate(userId, updates, {new:true}).select('-password')
 }
 
-// export const findUserByIdWithPassword= async(userId)=>{
-//     return await User.findById(userId)
-// }
-
-// export const findIncludedUserIds = async(excludedIds)=>{
-//     return await User.find({
-//         _id: {$nin:excludedIds}
-//     }).select('-password')
-// }

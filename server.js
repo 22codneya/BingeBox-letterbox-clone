@@ -6,6 +6,8 @@ import 'dotenv/config'
 import mongoose from 'mongoose'
 
 import userRoutes from './routes/userRoutes.js'
+import profileRoutes from './routes/profileRoutes.js'
+
 
 const app = express()
 
@@ -26,6 +28,7 @@ connectDB();
 
 
 app.use('/api/user', userRoutes)
+app.use('/api/profile', profileRoutes)
 
 const PORT = process.env.PORT
 
