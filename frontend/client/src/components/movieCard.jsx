@@ -1,6 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 const MovieCard = ({ movie }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/movieDetails/${movie.id}`);
+  };
+
   return (
-    <div className="w-40 cursor-pointer transition-transform duration-300 hover:scale-105">
+    <div 
+    onClick={handleClick}
+     className="w-40 cursor-pointer transition-transform duration-300 hover:scale-105">
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title || movie.name}
