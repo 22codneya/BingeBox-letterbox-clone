@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const HeroCarousel = () => {
   const [movies, setMovies] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchHeroMovies = async () => {
@@ -29,7 +30,9 @@ const HeroCarousel = () => {
   if (movies.length === 0) return null;
 
   return (
-    <div className="mb-0">
+    <div 
+    className="mb-0 cursor-pointer">
+        
       <div className="carousel w-full ">
         {movies.map((movie, index) => (
           <div
@@ -44,13 +47,19 @@ const HeroCarousel = () => {
             />
 
             {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/50 flex items-end">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent flex items-end">
               <div className="p-10 text-white max-w-2xl">
                 <h1 className="text-5xl font-bold">{movie.title}</h1>
 
-                <p className="mt-4 line-clamp-3">
+                <div className="mt-3 flex items-center gap-4 text-sm text-gray-300">
+                   <span>⭐ {movie.vote_average.toFixed(1)}</span>
+                   <span>{movie.release_date?.split("-")[0]}</span>
+                   <span>{movie.original_language.toUpperCase()}</span>
+                </div>
+
+                 <p className="mt-4 line-clamp-3">
                   {movie.overview}
-                </p>
+                 </p>
               </div>
             </div>
           </div>
@@ -59,13 +68,16 @@ const HeroCarousel = () => {
 
       <div className="flex justify-center gap-2 py-4">
         {movies.map((_, index) => (
-          <a
-            key={index}
-            href={`#slide${index}`}
-            className="btn btn-xs btn-circle"
-          >
-            {index + 1}
-          </a>
+         <a
+             key={index}
+      href={`#slide${index + 1}`}
+      onClick={() => setCurrentSlide(index)}
+      className={`h-1.5 w-8 rounded-full transition-all duration-300 ${
+        currentSlide === index
+          ? "bg-primary"
+          : "bg-base-content/30"
+      }`}
+          />
         ))}
       </div>
     </div>

@@ -17,7 +17,7 @@ const MovieCarousel = ({title, url}) => {
          {title}
       </h2>
 
-      <div className="carousel carousel-center rounded-box space-x-4 w-full">
+      <div className="carousel carousel-center rounded-box space-x-4 w-full rounded-xl bg-base-100 p-5">
         {movies.map((movie) => (
           <div key={movie.id} className="carousel-item">
             <MovieCard movie={movie} />

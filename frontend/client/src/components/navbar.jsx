@@ -13,7 +13,7 @@ const Navbar = () => {
     navigate(`/search?search=${encodeURIComponent(query)}`);
   }
   return (
-  <div className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md">
+  <div className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md border-b border-base-content/10">
   <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
   <label htmlFor="navbar-1-toggle" className="fixed inset-0 hidden max-lg:peer-checked:block"></label>
   <div className="collapse-title navbar">
@@ -26,7 +26,7 @@ const Navbar = () => {
       </label>
      <Link to="/" className="text-2xl font-bold text-primary"> BINGE BOX</Link>
     </div>
-    <div className="navbar-center hidden lg:flex">
+    <div className="navbar-center hidden lg:flex ">
       <ul className="menu menu-horizontal px-1">
         <li><button>Sign In</button></li>
         <li><Link to="/Signup">Create account</Link></li>

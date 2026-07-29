@@ -5,13 +5,13 @@ import Sidebar from "../components/Sidebar";
 
 const Layout = () => {
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open bg-base-300">
       <input id="sidebar-drawer" type="checkbox" className="drawer-toggle" />
 
       <div className="drawer-content flex flex-col min-h-screen">
         <Navbar />
 
-        <main className="flex-1 p-0">
+        <main className="flex-1 bg-base-300">
           <Outlet />
         </main>
 
