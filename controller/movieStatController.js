@@ -1,7 +1,4 @@
-import {
-  addViewService,
-  addRatingService,
-} from "../services/movieServices.js";
+import { addViewService, addRatingService, getMovieStatsWithUser } from "../services/movieServices.js";
 
 export const addMovieView = async (req, res) => {
   try {
@@ -49,4 +46,25 @@ export const addMovieRating = async (req, res) => {
       message: err.message,
     });
   }
-}; 
+};
+
+export const getMovieStats = async (req, res) => {
+  try {
+    const { id, type } = req.params;
+    const userId = req.id;
+
+    const data = await getMovieStatsWithUser(Number(id), type, userId);
+
+    res.status(200).json({
+      success: true,
+      ...data,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

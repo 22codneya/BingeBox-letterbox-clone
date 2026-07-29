@@ -9,7 +9,7 @@ import {
   decrementLike,
 } from "../repositories/movieStatRepo.js";
 
-export const toggleLike = async (id, movieId, type) => {
+export const toggleLike = async (userId, movieId, type) => {
   const alreadyLiked = await findLike(userId, movieId, type);
 
   if (alreadyLiked) {

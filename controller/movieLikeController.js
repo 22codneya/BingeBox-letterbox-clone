@@ -2,7 +2,7 @@ import { toggleLike } from "../services/movieLikeService.js";
 
 export const toggleMovieLike = async (req, res) => {
   try {
-    const userId = req.user.userId; // protect middleware se
+    const userId = req.id; 
     console.log("request body from controller ", req.body);
     const { id, type } = req.body;
 
@@ -13,7 +13,7 @@ export const toggleMovieLike = async (req, res) => {
       });
     }
 
-    const result = await toggleLike(userId, movieId, type);
+    const result = await toggleLike(userId, id, type);
 
     return res.status(200).json({
       success: true,
