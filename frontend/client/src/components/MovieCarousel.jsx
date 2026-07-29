@@ -12,7 +12,7 @@ const MovieCarousel = ({title, url}) => {
     return <h2>{error}</h2>;
   }
   return (
-     <section className="px-6 py-4">
+     <section className="px-6 py-4 pt-0">
       <h2 className="text-2xl font-bold text-white mb-4">
          {title}
       </h2>

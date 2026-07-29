@@ -16,7 +16,7 @@ const Sidebar = () => {
          BingeBox
       </h1>
 
-      <ul className="menu gap-2">
+      <ul className="menu gap-6 ">
 
         <li>
           <NavLink to="/"
