@@ -1,12 +1,43 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useAuthStore from "../store/useauthStore";
 
 const MovieDetails = () => {
   const { id, type } = useParams();
+  const {token} = useAuthStore();
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
   const [views, setViews] = useState(0);
   const [userRating, setUserRating] = useState(0);
   const [averageRating, setAverageRating] = useState(0);
   const [movie, setMovie] = useState(null);
+
+  const handleLike = async () => {
+    try {
+      const res = await fetch("http://localhost:5001/api/movie/toggle-like", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: Number(id),
+          type,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message);
+      }
+
+      setIsLiked(data.liked);
+      setLikes(data.likes);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   //fetching api data
   useEffect(() => {
     const fetchMovie = async () => {
@@ -119,6 +150,7 @@ const MovieDetails = () => {
                 </span>
 
                 <span>👁 {views}</span>
+                <span>♡ {likes}</span>
 
                 <span>{movie.release_date || movie.first_air_date}</span>
               </div>
@@ -133,24 +165,37 @@ const MovieDetails = () => {
                   </span>
                 ))}
               </div>
-              <div className="mt-6 flex items-center gap-4">
-                <span className="font-semibold">Rate this</span>
 
-                <div className="rating">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <input
-                      key={star}
-                      type="radio"
-                      name="rating"
-                      className="mask mask-star-2 bg-orange-400"
-                      checked={userRating === star}
-                      onChange={() => handleRating(star)}
-                    />
-                  ))}
+              {/* // */}
+              <div>
+                <div className="mt-6 flex items-center gap-4">
+                  <span className="font-semibold">Rate this</span>
+
+                  <div className="rating">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <input
+                        key={star}
+                        type="radio"
+                        name="rating"
+                        className="mask mask-star-2 bg-orange-400"
+                        checked={userRating === star}
+                        onChange={() => handleRating(star)}
+                      />
+                    ))}
+                  </div>
+
+                  <span className="text-gray-300">{userRating}/5</span>
                 </div>
-
-                <span className="text-gray-300">{userRating}/5</span>
+                <button className="btn btn-circle" onClick={handleLike}>
+                  {isLiked ? (
+                    <span className="text-red-500 text-xl">❤️</span>
+                  ) : (
+                    <span className="text-xl">🤍</span>
+                  )}
+                </button>
               </div>
+
+              {/* // */}
             </div>
           </div>
         </div>

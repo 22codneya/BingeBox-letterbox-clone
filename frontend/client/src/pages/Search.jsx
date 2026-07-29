@@ -18,7 +18,7 @@ const Search = () => {
       searchQuery
     )}&language=en-US`;
   } else {
-    url = "https://api.themoviedb.org/3/discover/multi?language=en-US";
+    url = "https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=1&sort_by=popularity.desc";
 
     if (genre) {
       url += `&with_genres=${genre}`;

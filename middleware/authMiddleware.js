@@ -27,7 +27,6 @@ const protect = (req, res, next) =>{
         })
     }
 
-    
-
 }
-export default protect
+export default protect;
+

@@ -13,7 +13,7 @@ const Sidebar = () => {
     <aside className="min-h-full w-62 bg-base-200 p-6">
 
       <h1 className="text-3xl font-bold text-primary mb-10">
-        🎬 BingeBox
+         BingeBox
       </h1>
 
       <ul className="menu gap-2">

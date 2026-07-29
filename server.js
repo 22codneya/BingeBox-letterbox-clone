@@ -31,6 +31,7 @@ connectDB();
 app.use('/api/user', userRoutes)
 app.use('/api/profile', profileRoutes)
 app.use('/api/movie', movieRoutes)
+app.use("/api/movie", movieRoutes);
 
 const PORT = process.env.PORT
 

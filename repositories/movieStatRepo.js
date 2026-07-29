@@ -49,3 +49,38 @@ export const updateMovieRating = async (movieId, type, rating) => {
 
   return stats;
 };
+
+export const incrementLike = (movieId, type) => {
+  return MovieStats.findOneAndUpdate(
+    {
+      movieId,
+      type,
+    },
+    {
+      $inc: {
+        likes: 1,
+      },
+    },
+    {
+      new: true,
+      upsert: true,
+    }
+  );
+};
+
+export const decrementLike = (movieId, type) => {
+  return MovieStats.findOneAndUpdate(
+    {
+      movieId,
+      type,
+    },
+    {
+      $inc: {
+        likes: -1,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+};

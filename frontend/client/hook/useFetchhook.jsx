@@ -34,7 +34,7 @@ const useFetch = (url) => {
 
         setMovies(result.results || []);
       } catch (err) {
-        console.error(err);
+        console.error("error is here in hook",err);
         setError(err.message);
       } finally {
         setLoading(false);
