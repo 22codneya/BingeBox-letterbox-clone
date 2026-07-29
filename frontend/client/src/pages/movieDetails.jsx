@@ -63,6 +63,52 @@ const MovieDetails = () => {
     fetchMovie();
   }, [id, type]);
 
+  // fetching movie stats
+useEffect(() => {
+
+  if(!token) return;
+
+  const loadStats = async()=>{
+
+    try{
+
+      const response = await fetch(
+        `http://localhost:5001/api/movie/${type}/${id}/stats`,
+        {
+          method:"GET",
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        }
+      );
+
+
+      const data = await response.json();
+
+console.log("STATS RESPONSE 👉", data);
+      if(!response.ok){
+        throw new Error(data.message);
+      }
+
+
+      setLikes(data.likes || 0);
+      setViews(data.views || 0);
+      setAverageRating(data.averageRating || 0);
+      setIsLiked(data.userLiked || false);
+      setUserRating(data.userRating || 0);
+
+
+    }catch(err){
+      console.log("stats error",err);
+    }
+
+  }
+
+
+  loadStats();
+
+
+},[id,type,token]);
   // adding view in our database
   useEffect(() => {
     const addView = async () => {
@@ -193,6 +239,10 @@ const MovieDetails = () => {
                     <span className="text-xl">🤍</span>
                   )}
                 </button>
+
+                <button>Add to watch list </button>
+                <input type="text" placeholder="review" />
+
               </div>
 
               {/* // */}

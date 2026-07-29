@@ -51,7 +51,7 @@ export const updateMovieRating = async (movieId, type, rating) => {
 };
 
 export const incrementLike = (movieId, type) => {
-  return MovieStats.findOneAndUpdate(
+  return movieStats.findOneAndUpdate(
     {
       movieId,
       type,
@@ -69,7 +69,7 @@ export const incrementLike = (movieId, type) => {
 };
 
 export const decrementLike = (movieId, type) => {
-  return MovieStats.findOneAndUpdate(
+  return movieStats.findOneAndUpdate(
     {
       movieId,
       type,
