@@ -4,7 +4,8 @@ const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/movieDetails/${movie.id}`);
+  const type = movie.media_type || (movie.first_air_date ? "tv" : "movie");
+  navigate(`/details/${type}/${movie.id}`);
   };
 
   return (

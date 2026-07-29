@@ -14,11 +14,11 @@ const Search = () => {
   let url;
 
   if (searchQuery) {
-    url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+    url = `https://api.themoviedb.org/3/search/multi?query=${encodeURIComponent(
       searchQuery
     )}&language=en-US`;
   } else {
-    url = "https://api.themoviedb.org/3/discover/movie?language=en-US";
+    url = "https://api.themoviedb.org/3/discover/multi?language=en-US";
 
     if (genre) {
       url += `&with_genres=${genre}`;

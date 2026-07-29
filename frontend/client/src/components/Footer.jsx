@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="footer footer-vertical lg:footer-horizontal footer-center bg-base-200 text-base-content px-10 py-12 gap-8">
         <div className="flex flex-col items-center gap-2">
   <h2 className="text-3xl font-bold text-primary">
-    🎬 BINGE BOX
+     BINGE BOX
   </h2>
 
   <p className="text-sm opacity-70">
