@@ -7,6 +7,7 @@ import mongoose from 'mongoose'
 
 import userRoutes from './routes/userRoutes.js'
 import profileRoutes from './routes/profileRoutes.js'
+import movieRoutes from './routes/movieRoutes.js'
 
 
 const app = express()
@@ -29,6 +30,7 @@ connectDB();
 
 app.use('/api/user', userRoutes)
 app.use('/api/profile', profileRoutes)
+app.use('/api/movie', movieRoutes)
 
 const PORT = process.env.PORT
 
