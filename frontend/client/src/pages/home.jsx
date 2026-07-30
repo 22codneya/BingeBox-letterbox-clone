@@ -1,5 +1,6 @@
 import MovieCarousel from "../components/MovieCarousel";
 import HeroCarousel from "../pages/HeroCarousel";
+import MovieRecommendation from "../components/movieRecommendation.jsx";
 const Home = () => {
   return (
     <>
@@ -36,6 +37,8 @@ const Home = () => {
         title="Top Rated Movies"
         url="https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1"
       />
+
+      <MovieRecommendation/>
 
     </>
   );
