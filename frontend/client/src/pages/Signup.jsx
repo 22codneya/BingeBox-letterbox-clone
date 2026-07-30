@@ -35,10 +35,8 @@ const Signup = () => {
       });
       const data = await response.json();
 
-      console.log("signup response is here", response);
-      console.log("signup data is here", data);
       if (!response.ok) {
-        throw new Error("Signup failed here at response");
+        throw new Error(data.message);
       }
 
       setToast({ message: "Signup successfully", type: "success" });
