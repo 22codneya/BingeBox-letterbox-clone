@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useAuthStore from "../store/useauthStore";
+import useAuthStore from "../store/useauthStore.js";
 
 const MovieDetails = () => {
   const { id, type } = useParams();
@@ -11,6 +11,7 @@ const MovieDetails = () => {
   const [userRating, setUserRating] = useState(0);
   const [averageRating, setAverageRating] = useState(0);
   const [movie, setMovie] = useState(null);
+  const [inWatchlist, setInWatchlist] = useState(false);
 
   const handleLike = async () => {
     try {
@@ -38,6 +39,36 @@ const MovieDetails = () => {
       console.log(err);
     }
   };
+
+  //watchlist
+  const handleWatchlist = async () => {
+  try {
+    const response = await fetch(
+      "http://localhost:5001/api/movie/toggle-watchlist",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: Number(id),
+          type,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+
+    setInWatchlist(data.saved);
+  } catch (err) {
+    console.log(err);
+  }
+};
   //fetching api data
   useEffect(() => {
     const fetchMovie = async () => {
@@ -240,7 +271,12 @@ console.log("STATS RESPONSE 👉", data);
                   )}
                 </button>
 
-                <button>Add to watch list </button>
+               <button className="btn btn-primary"
+                  onClick={handleWatchlist}>
+               
+
+                  {inWatchlist ? "✓ In Watchlist" : "+ Add to Watchlist"}
+                </button>
                 <input type="text" placeholder="review" />
 
               </div>

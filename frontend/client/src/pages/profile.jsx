@@ -64,7 +64,6 @@ console.log("data is here", data);
 
   return (
     <>
-    <div className="navbar bg-base-100 shadow-sm border">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -82,17 +81,6 @@ console.log("data is here", data);
       </ul>
     </div>
   </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>Profile</a></li>
-      <li><a>Watchlist</a></li>
-      <li><a>List</a></li>
-      <li><a>Reviews</a></li>
-      <li><a>Films</a></li>
-      <li><a>Likes</a></li>
-    </ul>
-  </div>
-</div>
 
 
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-6">

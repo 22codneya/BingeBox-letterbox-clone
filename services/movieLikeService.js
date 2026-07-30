@@ -9,6 +9,12 @@ import {
   decrementLike,
 } from "../repositories/movieStatRepo.js";
 
+import { getUserLikes } from "../repositories/movieLikeRepo.js";
+
+export const getFavorites = async (userId) => {
+  return await getUserLikes(userId);
+};
+
 export const toggleLike = async (userId, movieId, type) => {
   const alreadyLiked = await findLike(userId, movieId, type);
 

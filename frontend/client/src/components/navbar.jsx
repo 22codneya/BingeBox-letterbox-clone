@@ -27,38 +27,7 @@ const Navbar = () => {
      <Link to="/" className="text-2xl font-bold text-primary"> BINGE BOX</Link>
     </div>
     <div className="navbar-center hidden lg:flex ">
-      <ul className="menu menu-horizontal px-1">
-        <li><button>Sign In</button></li>
-        <li><Link to="/Signup">Create account</Link></li>
-        <li>
-          <details>
-            <summary>Profile</summary>
-            <ul className="p-2 bg-base-100 w-40 z-1">
-                  <li>
-            <Link to="/">Home</Link>
-          </li>
-           <li>
-            <Link to="/Profile">Profile</Link></li>
-          <li>
-            <Link to="/Movies">Movies</Link>
-          </li>
-
-          <li>  
-            <Link to="/Watchlist">Watchlist</Link>
-          </li>
-
-          <li>
-            <Link to="/Reviews">Reviews</Link>
-          </li>
-          <li>
-            <Link to="/Favorites">Favorites</Link>
-          </li>
-
-            </ul>
-          </details>
-        </li>
-        
-      </ul>
+      
     </div>
     <div className="navbar-end">
       <form onSubmit={handleSearch} className='flex items-center gap-3 '>

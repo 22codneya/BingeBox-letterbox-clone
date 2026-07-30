@@ -15,21 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const App = () => {
   return (
-    // <Routes>
-    //   <Route path="/" element={<Layout />}>
-    //     <Route index element={<Home />} />
-
-    //     <Route path="/details/:type/:id" element={<MovieDetails />} />
-    //     <Route path='/signup' element={ <Signup/>}/>
-    //     <Route path='/login' element={ <PublicRoute> <Login/> </PublicRoute> }/>
-    //     <Route path="/profile" element={<Profile />} />
-    //     <Route path="/search" element={<Search />} />
-    //     <Route path="/watchlist" element={<Watchlist />} />
-    //     <Route path="/favorites" element={<Favorites />} />
-    //     <Route path="/movies" element={<Movies />} />
-    //     <Route path="/reviews" element={<Reviews />} />
-    //   </Route>
-    // </Routes>
+    
     <Routes>
       {/* Public Routes */}
       <Route path="/signup" element={ <PublicRoute> <Signup />  </PublicRoute> }/>

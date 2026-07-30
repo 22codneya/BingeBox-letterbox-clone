@@ -5,7 +5,9 @@ const MovieCarousel = ({title, url}) => {
   const { movies, loading, error } = useFetch(url);
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
   }
 
   if (error) {

@@ -1,5 +1,9 @@
 import MovieLike from "../model/movieLike.js";
 
+export const getUserLikes = async (userId) => {
+  return await MovieLike.find({ userId });
+};
+
 export const findLike = (userId, movieId, type) => {
   return MovieLike.findOne({ userId, movieId, type });
 };
