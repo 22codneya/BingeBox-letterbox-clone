@@ -6,7 +6,6 @@ import {
   FaFilm,
   FaHeart,
   FaBookmark,
-  FaStar,
   FaUser
 } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
@@ -85,19 +84,7 @@ const Sidebar = () => {
       : ""
   }
 >
-            <FaStar />
-            Reviews
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink to="/profile"
-  className={({ isActive }) =>
-    isActive
-      ? "bg-primary text-primary-content rounded-lg"
-      : ""
-  }
->
+          
             <FaUser />
             Profile
           </NavLink>

@@ -3,8 +3,6 @@ import express from "express";
 import { toggleMovieLike,
      getFavoriteMovies,} from "../controller/movieLikeController.js";
 
-
-import { toggleMovieLike} from "../controller/movieLikeController.js";
 import protect from "../middleware/authMiddleware.js";
 import {addMovieView,addMovieRating, getMovieStats} from "../controller/movieStatController.js";
 import { addReview, deleteReview, getReviews, summarizeReviews } from "../controller/reviewController.js";
