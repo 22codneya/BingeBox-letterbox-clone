@@ -23,7 +23,7 @@ const MovieDetails = () => {
 
   const handleLike = async () => {
     try {
-      const res = await fetch(`${API}/movie/toggle-lik`, {
+      const res = await fetch(`${API}/movie/toggle-like`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
