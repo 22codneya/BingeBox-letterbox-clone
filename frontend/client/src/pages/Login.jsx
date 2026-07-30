@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import useAuthStore from "../store/useauthStore";
+import useAuthStore from "../store/useauthStore.js";
 const API = import.meta.env.VITE_API_URL;
 
 
