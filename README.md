@@ -11,7 +11,6 @@ BingeBox is a full-stack MERN application inspired by Letterboxd that allows use
 * ❤️ Like / Unlike Movies
 * ⭐ Rate Movies
 * ✍️ Write Reviews
-* 🗑️ Delete Your Own Reviews
 * 👤 User Authentication (JWT)
 * 👤 User Profile Management
 * 🤖 AI Review Summary using Groq API
