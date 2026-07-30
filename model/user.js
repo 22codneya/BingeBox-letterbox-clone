@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import profileImage from "../assets/profile_img.webp"
 const userSchema = new mongoose.Schema({
 
 userName:{
@@ -22,7 +21,7 @@ gender:{
     },
 profileImage:{
         type:String,
-        default:"../assets/profile_img.webp"
+        default:"https://pixabay.com/images/download/x-973460_1920.png"
     },
 bio:{
         type: String,

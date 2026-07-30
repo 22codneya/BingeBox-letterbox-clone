@@ -519,7 +519,7 @@ const MovieDetails = () => {
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-4">
                   <img
-                    src={item.userId?.profileImage || "/defaultProfile.jpg"}
+                    src={item.userId?.profileImage || "https://pixabay.com/images/download/x-973460_1920.png"}
                     className="w-12 h-12 rounded-full object-cover"
                   />
 
