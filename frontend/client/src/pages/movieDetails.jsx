@@ -188,7 +188,7 @@ const MovieDetails = () => {
 
     try {
       const response = await fetch(
-        `${API}/api/movie/${type}/${id}/review`,
+        `${API}/movie/${type}/${id}/review`,
         {
           method: "POST",
           headers: {
