@@ -52,7 +52,7 @@ const MovieDetails = () => {
   const handleWatchlist = async () => {
   try {
     const response = await fetch(
-      `${API}/api/movie/toggle-watchlist`,
+      `${API}/movie/toggle-watchlist`,
       {
         method: "POST",
         headers: {
