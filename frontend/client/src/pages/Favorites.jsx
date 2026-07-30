@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuthStore from "../store/useauthStore.js";
+const API = import.meta.env.VITE_API_URL;
 
 const Favorites = () => {
   const { token } = useAuthStore();
@@ -13,7 +14,7 @@ const Favorites = () => {
   const fetchFavorites = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5001/api/movie/favorites",
+        `${API}/movie/favorites`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

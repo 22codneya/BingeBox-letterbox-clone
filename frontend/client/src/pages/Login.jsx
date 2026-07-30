@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "../store/useauthStore";
+const API = import.meta.env.VITE_API_URL;
+
 
 const Login = () => {
   const { login } = useAuthStore();
@@ -28,7 +30,7 @@ const Login = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5001/api/user/login", {
+      const response = await fetch(`${API}/user/login`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(formData),

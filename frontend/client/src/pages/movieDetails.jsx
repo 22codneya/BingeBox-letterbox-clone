@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuthStore from "../store/useauthStore.js";
+const API = import.meta.env.VITE_API_URL;
 
 const MovieDetails = () => {
   const { id, type } = useParams();
@@ -22,7 +23,7 @@ const MovieDetails = () => {
 
   const handleLike = async () => {
     try {
-      const res = await fetch("http://localhost:5001/api/movie/toggle-like", {
+      const res = await fetch(`${API}/movie/toggle-lik`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +52,7 @@ const MovieDetails = () => {
   const handleWatchlist = async () => {
   try {
     const response = await fetch(
-      "http://localhost:5001/api/movie/toggle-watchlist",
+      `${API}/api/movie/toggle-watchlist`,
       {
         method: "POST",
         headers: {
@@ -108,7 +109,7 @@ const MovieDetails = () => {
     const loadStats = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5001/api/movie/${type}/${id}/stats`,
+          `${API}/movie/${type}/${id}/stats`,
           {
             method: "GET",
             headers: {
@@ -140,7 +141,7 @@ const MovieDetails = () => {
     const addView = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5001/api/movie/${type}/${id}/view`,
+          `${API}/movie/${type}/${id}/view`,
           {
             method: "POST",
           },
@@ -164,7 +165,7 @@ const MovieDetails = () => {
     const fetchReviews = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5001/api/movie/${type}/${id}/reviews`,
+          `${API}/movie/${type}/${id}/reviews`,
         );
 
         const data = await response.json();
@@ -187,7 +188,7 @@ const MovieDetails = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/movie/${type}/${id}/review`,
+        `${API}/api/movie/${type}/${id}/review`,
         {
           method: "POST",
           headers: {
@@ -216,7 +217,7 @@ const MovieDetails = () => {
   const handleDeleteReview = async (reviewId) => {
     try {
       const response = await fetch(
-        `http://localhost:5001/api/movie/review/${reviewId}`,
+        `${API}/movie/review/${reviewId}`,
         {
           method: "DELETE",
           headers: {
@@ -242,7 +243,7 @@ const MovieDetails = () => {
       setLoadingSummary(true);
 
       const response = await fetch(
-        `http://localhost:5001/api/movie/${type}/${id}/review-summary`,
+        `${API}/movie/${type}/${id}/review-summary`,
       );
 
       const data = await response.json();
@@ -263,7 +264,7 @@ const MovieDetails = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/movie/${type}/${id}/rate`,
+        `${API}/movie/${type}/${id}/rate`,
         {
           method: "POST",
           headers: {

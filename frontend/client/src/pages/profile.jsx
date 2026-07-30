@@ -1,5 +1,6 @@
 import useAuthStore from "../store/useauthStore.js";
 import { useState, useEffect } from "react";
+const API = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const { token,user, refresh } = useAuthStore();
@@ -27,7 +28,7 @@ const Profile = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:5001/api/profile/update", {
+      const response = await fetch(`${API}/profile/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

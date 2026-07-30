@@ -1,6 +1,7 @@
 // import { useEffect, useState } from 'react'
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+const API = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5001/api/user/signup", {
+      const response = await fetch(`${API}/user/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

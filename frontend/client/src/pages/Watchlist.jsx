@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuthStore from "../store/useauthStore.js";
+const API = import.meta.env.VITE_API_URL;
 
 const Watchlist = () => {
   const { token } = useAuthStore();
@@ -13,7 +14,7 @@ const Watchlist = () => {
   const fetchWatchlist = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5001/api/movie/watchlist",
+        `${API}/movie/watchlist`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
