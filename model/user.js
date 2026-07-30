@@ -21,7 +21,7 @@ gender:{
     },
 profileImage:{
         type:String,
-        default:"https://pixabay.com/images/download/x-973460_1920.png"
+        default:"https://api.dicebear.com/10.x/initials/svg?seed=User"
     },
 bio:{
         type: String,

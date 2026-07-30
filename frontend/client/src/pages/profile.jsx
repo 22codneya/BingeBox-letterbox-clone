@@ -202,9 +202,7 @@ console.log("data is here", data);
             </div>
 
 <div className="card-actions mt-6 justify-between">
-  <button className="btn btn-error">
-    Logout
-  </button>
+
 
   {isEditing ? (
     <button className="btn btn-success" onClick={handleSave}>

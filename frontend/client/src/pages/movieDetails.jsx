@@ -7,19 +7,17 @@ const MovieDetails = () => {
   const { id, type } = useParams();
   const { token, user } = useAuthStore();
   const [isLiked, setIsLiked] = useState(false);
+  const [isWatched, setIsWatched] = useState(false);
   const [likes, setLikes] = useState(0);
   const [views, setViews] = useState(0);
   const [userRating, setUserRating] = useState(0);
   const [averageRating, setAverageRating] = useState(0);
   const [movie, setMovie] = useState(null);
-
   const [inWatchlist, setInWatchlist] = useState(false);
-
   const [review, setReview] = useState("");
   const [reviews, setReviews] = useState([]);
   const [summary, setSummary] = useState(null);
   const [loadingSummary, setLoadingSummary] = useState(false);
-
 
   const handleLike = async () => {
     try {
@@ -47,13 +45,10 @@ const MovieDetails = () => {
       console.log(err);
     }
   };
-
-  //watchlist
-  const handleWatchlist = async () => {
-  try {
-    const response = await fetch(
-      `${API}/movie/toggle-watchlist`,
-      {
+  // watched
+  const handleWatched = async () => {
+    try {
+      const response = await fetch(`${API}/movie/toggle-watched`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,20 +58,45 @@ const MovieDetails = () => {
           id: Number(id),
           type,
         }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
       }
-    );
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message);
+      setIsWatched(data.watched);
+    } catch (err) {
+      console.log(err);
     }
+  };
+  //watchlist
+  const handleWatchlist = async () => {
+    try {
+      const response = await fetch(`${API}/movie/toggle-watchlist`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: Number(id),
+          type,
+        }),
+      });
 
-    setInWatchlist(data.saved);
-  } catch (err) {
-    console.log(err);
-  }
-};
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      setInWatchlist(data.saved);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   //fetching api data
   useEffect(() => {
     const fetchMovie = async () => {
@@ -108,15 +128,12 @@ const MovieDetails = () => {
 
     const loadStats = async () => {
       try {
-        const response = await fetch(
-          `${API}/movie/${type}/${id}/stats`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await fetch(`${API}/movie/${type}/${id}/stats`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
 
         const data = await response.json();
 
@@ -129,6 +146,7 @@ const MovieDetails = () => {
         setAverageRating(data.averageRating || 0);
         setIsLiked(data.userLiked || false);
         setUserRating(data.userRating || 0);
+        setIsWatched(data.userWatched || false);
       } catch (err) {
         console.log("stats error", err);
       }
@@ -136,16 +154,14 @@ const MovieDetails = () => {
 
     loadStats();
   }, [id, type, token]);
+
   // adding view in our database
   useEffect(() => {
     const addView = async () => {
       try {
-        const response = await fetch(
-          `${API}/movie/${type}/${id}/view`,
-          {
-            method: "POST",
-          },
-        );
+        const response = await fetch(`${API}/movie/${type}/${id}/view`, {
+          method: "POST",
+        });
 
         console.log("Status:", response.status);
 
@@ -164,9 +180,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(
-          `${API}/movie/${type}/${id}/reviews`,
-        );
+        const response = await fetch(`${API}/movie/${type}/${id}/reviews`);
 
         const data = await response.json();
 
@@ -187,19 +201,16 @@ const MovieDetails = () => {
     if (!review.trim()) return;
 
     try {
-      const response = await fetch(
-        `${API}/movie/${type}/${id}/review`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            review,
-          }),
+      const response = await fetch(`${API}/movie/${type}/${id}/review`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify({
+          review,
+        }),
+      });
 
       const data = await response.json();
 
@@ -216,15 +227,12 @@ const MovieDetails = () => {
 
   const handleDeleteReview = async (reviewId) => {
     try {
-      const response = await fetch(
-        `${API}/movie/review/${reviewId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch(`${API}/movie/review/${reviewId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       const data = await response.json();
 
@@ -242,9 +250,7 @@ const MovieDetails = () => {
     try {
       setLoadingSummary(true);
 
-      const response = await fetch(
-        `${API}/movie/${type}/${id}/review-summary`,
-      );
+      const response = await fetch(`${API}/movie/${type}/${id}/review-summary`);
 
       const data = await response.json();
       if (!response.ok) {
@@ -263,18 +269,15 @@ const MovieDetails = () => {
     setUserRating(rating);
 
     try {
-      const response = await fetch(
-        `${API}/movie/${type}/${id}/rate`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            rating,
-          }),
+      const response = await fetch(`${API}/movie/${type}/${id}/rate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          rating,
+        }),
+      });
 
       const data = await response.json();
 
@@ -377,12 +380,17 @@ const MovieDetails = () => {
                   )}
                 </button>
 
-<button
-  className="btn btn-primary"
-  onClick={handleWatchlist}
->
-  {inWatchlist ? "✓ In Watchlist" : "+ Add to Watchlist"}
-</button>
+                {/* Watched */}
+                <button
+                  className={`btn ${isWatched ? "btn-success" : "btn-outline"}`}
+                  onClick={handleWatched}
+                >
+                  {isWatched ? " Watched" : " Mark as Watched"}
+                </button>
+
+                <button className="btn btn-primary" onClick={handleWatchlist}>
+                  {inWatchlist ? "✓ In Watchlist" : "+ Add to Watchlist"}
+                </button>
               </div>
             </div>
           </div>
@@ -519,7 +527,10 @@ const MovieDetails = () => {
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center gap-4">
                   <img
-                    src={item.userId?.profileImage || "https://pixabay.com/images/download/x-973460_1920.png"}
+                    src={
+                      item.userId?.profileImage ||
+                      "https://api.dicebear.com/10.x/initials/svg?seed=User"
+                    }
                     className="w-12 h-12 rounded-full object-cover"
                   />
 

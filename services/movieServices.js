@@ -1,5 +1,6 @@
 import { findLike } from "../repositories/movieLikeRepo.js";
 import {updateMovieViews, updateMovieRating, getMovieStats,} from "../repositories/movieStatRepo.js";
+import { findWatched } from "../repositories/movieWatchedRepo.js";
 
 export const addViewService = async ({ movieId, type }) => {
   const movieStats = await updateMovieViews(movieId, type);
@@ -21,7 +22,9 @@ export const addRatingService = async ({ movieId, type, rating }) => {
 export const getMovieStatsWithUser = async (movieId, type, userId) => {
   const stats = await getMovieStats(movieId, type);
 
-  const liked = await findLike (userId, movieId, type);
+  const liked = await findLike(userId, movieId, type);
+
+  const watched = await findWatched(userId, movieId, type);
 
   return {
     views: stats?.views || 0,
@@ -29,6 +32,6 @@ export const getMovieStatsWithUser = async (movieId, type, userId) => {
     averageRating: stats?.averageRating || 0,
     totalRatings: stats?.totalRatings || 0,
     userLiked: !!liked,
+    userWatched: !!watched,
   };
 };
-
