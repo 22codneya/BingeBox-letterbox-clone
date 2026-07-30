@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useFetch from "../../hook/useFetchhook.jsx";
-import MovieCard from "../components/MovieCard.jsx";
+import MovieCard from "../components/movieCard.jsx";
 
 const Search = () => {
   const [searchParams] = useSearchParams();

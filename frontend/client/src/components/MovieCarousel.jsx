@@ -1,4 +1,4 @@
-import MovieCard from "./MovieCard";
+import MovieCard from "./movieCard.jsx";
 import useFetch from "../../hook/useFetchhook.jsx";
 
 const MovieCarousel = ({title, url}) => {
