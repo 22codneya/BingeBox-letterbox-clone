@@ -17,6 +17,7 @@ export const addRatingService = async ({ movieId, type, rating }) => {
     totalRatings: movieStats.totalRatings,
   };
 };
+
 export const getMovieStatsWithUser = async (movieId, type, userId) => {
   const stats = await getMovieStats(movieId, type);
 
@@ -30,3 +31,4 @@ export const getMovieStatsWithUser = async (movieId, type, userId) => {
     userLiked: !!liked,
   };
 };
+
