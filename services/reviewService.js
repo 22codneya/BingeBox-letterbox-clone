@@ -77,36 +77,45 @@ return JSON.parse(aiReply.slice(jsonStart, jsonEnd + 1));
 
 const buildReviewPrompt = (reviews) => {
   return `
-You are an expert movie review analyst.
+You are an AI review analyst.
 
-Analyze the following user reviews of a movie and provide a concise audience insight report.
+Analyze the following movie reviews and generate a professional review summary similar to Amazon's "Customers say" section.
 
-Return ONLY valid JSON. Do not add markdown, explanations, or extra text.
+Guidelines:
 
-Use exactly this format:
+- Keep the tone neutral and professional.
+- Do NOT exaggerate or use marketing language like "must watch", "masterpiece", "absolutely loved", etc.
+- Base every statement only on the reviews provided.
+- Mention both positive and negative feedback whenever available.
+- If opinions are mixed, explicitly state that they are mixed.
+- Keep the overall summary between 80–120 words.
+
+Return ONLY valid JSON in the following format:
 
 {
-  "summary": "A short 3-4 sentence summary explaining what most viewers think about the movie.",
-  
+  "summary": "A concise professional summary of customer opinions.",
   "sentiment": {
     "overall": "Positive | Mostly Positive | Mixed | Mostly Negative | Negative",
-    "score": <number between 0 and 100>,
-    "explanation": "Explain why viewers feel this way."
+    "score": 0-100,
+    "explanation": "Explain briefly why this sentiment was chosen."
   },
-
-  "commonLikes": [
-    "Things viewers frequently appreciated"
+  "strengths": [
+    "Strength 1",
+    "Strength 2",
+    "Strength 3"
   ],
-
-  "commonDislikes": [
-    "Things viewers frequently criticized"
+  "weaknesses": [
+    "Weakness 1",
+    "Weakness 2"
   ],
-
   "keywords": [
-    "Most repeated words/topics from reviews"
+    "Keyword1",
+    "Keyword2",
+    "Keyword3",
+    "Keyword4",
+    "Keyword5"
   ],
-
-  "audienceOpinion": "One sentence describing the general audience reaction."
+  "overallOpinion": "One concise sentence summarizing the audience consensus."
 }
 REVIEWS:
 

@@ -17,9 +17,15 @@ import {
   getReviews,
   summarizeReviews,
 } from "../controller/reviewController.js";
-
-import {toggleWatchlist, getWatchlistMovies} from "../controller/movieWatchlistController.js";
-import { getUserWatchedMoviesController, toggleMovieWatched } from "../controller/movieWatchedController.js";
+import { getMovieRecommendation } from "../controller/recommendationController.js";
+import {
+  toggleWatchlist,
+  getWatchlistMovies,
+} from "../controller/movieWatchlistController.js";
+import {
+  getUserWatchedMoviesController,
+  toggleMovieWatched,
+} from "../controller/movieWatchedController.js";
 
 const router = express.Router();
 
@@ -36,5 +42,6 @@ router.delete("/review/:reviewId", protect, deleteReview);
 router.get("/:type/:id/review-summary", summarizeReviews);
 router.post("/toggle-watched", protect, toggleMovieWatched);
 router.get("/watched", protect, getUserWatchedMoviesController);
+router.post("/recommendation", protect, getMovieRecommendation);
 
 export default router;
